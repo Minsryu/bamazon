@@ -76,7 +76,7 @@ var purchaceItem = function(id,quantity){
 	connection.query("SELECT * FROM products WHERE item_id=?",[id],function(err,res){
 	
 		if(res[0] === undefined){
-			console.log("/////////////////////////////////");
+			console.log("\n/////////////////////////////////");
 			console.log("Sorry that Item does not exsist, please check list again");
 			console.log("/////////////////////////////////");
 			displayItems();
@@ -85,7 +85,7 @@ var purchaceItem = function(id,quantity){
 			var inStock = res[0].stock_quantity;
 			var price = res[0].price_customer;
 			if(quantity > inStock ) {
-			console.log("/////////////////////////////////");	
+			console.log("\n/////////////////////////////////");	
 			console.log("Sorry we do not have that much in stock, please check list again");
 			console.log("/////////////////////////////////");
 			displayItems();
@@ -95,7 +95,9 @@ var purchaceItem = function(id,quantity){
 				var newStock = parseInt(inStock) - parseInt(quantity);
 				connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?",[newStock,id],function(err,res){
 					// console.log(res);
+					console.log("\n/////////////////////////////////");
 					console.log("You have purchased! The total price is: $"+price*quantity );
+					console.log("/////////////////////////////////");
 					displayItems();
 				});
 			}

@@ -27,7 +27,7 @@ var displayChoices = function(){
 		choices:["View Products for Sale","View Low Inventory","Add to Inventory","Add New Product"]
 
 	}]).then(function(res){
-		console.log(res);
+	
 		switch(res.choice){
 			case "View Products for Sale" :
 				viewProducts();
@@ -125,11 +125,10 @@ var addInventory = function(){
 
 var stockInventory = function(id,quantity){
 
-	console.log("id:"+id+" quantity :"+quantity );
 	connection.query("SELECT * FROM products WHERE item_id=?",[id],function(err,res){
 	
 		if(res[0] === undefined){
-			console.log("/////////////////////////////////");
+			console.log("\n/////////////////////////////////");
 			console.log("Sorry that Item does not exsist, please check list again");
 			console.log("/////////////////////////////////");
 			displayChoices();
@@ -140,9 +139,9 @@ var stockInventory = function(id,quantity){
 
 			connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?",[newStock,id],function(err,res){
 				// console.log(res);
-			console.log("/////////////////////////////////");
+			console.log("\n/////////////////////////////////");
 			console.log("Stock has been update! Total stock is now "+newStock);
-			console.log("/////////////////////////////////");
+			console.log("\n/////////////////////////////////");
 			displayChoices();
 
 			});
@@ -181,10 +180,6 @@ var newProduct = function(){
 			return false;
 		}
 	}]).then(function(res){
-		console.log("name: "+res.name);
-		console.log("category: "+res.department);
-		console.log("price: "+res.price);
-		console.log("stock: "+res.stock);
 
 		connection.query("INSERT INTO products SET?",{
 			product_name:res.name,
@@ -192,7 +187,7 @@ var newProduct = function(){
 			price_customer:res.price,
 			stock_quantity:res.stock
 		},function(err,res){
-			console.log("/////////////////////////////////");
+			console.log("\n/////////////////////////////////");
 			console.log("Product has been added!")
 			console.log("/////////////////////////////////");
 			displayChoices();

@@ -1,6 +1,6 @@
 # bamazon
 
-Hello this is an Bamazon App! I will guide you how to use the app as customer who can purchase products and manager who over looks inventory and restock if low.
+Hello this is an Bamazon App! I will guide you how to use the app as customer who can purchase products and manager who over looks inventory, restock if it is low and add new product.
 
 1. Customer
 	1. First you run the app by typing "node bamazonCustomer.js" in terminal.
